@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aayush Thakur & Pure Love Prerna Nagre</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Futuristic & Romantic Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            black: '#030308',
+                            dark: '#0a0a12',
+                            red: '#ff0033',
+                            lightRed: '#ff3366',
+                            blue: '#00d2ff',
+                            deepBlue: '#0055ff',
+                            glass: 'rgba(10, 10, 18, 0.88)'
+                        }
+                    },
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        rajdhani: ['Rajdhani', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030308;
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Background Image Slideshow with Provided Images */
+        .bg-slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .bg-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            filter: brightness(0.4) contrast(1.1);
+        }
+
+        .bg-slide.active {
+            opacity: 1;
+        }
+
+        .bg-cyber-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-image: 
+                linear-gradient(to right, rgba(0, 210, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 0, 51, 0.05) 1px, transparent 1px);
+            background-size: 35px 35px;
+            pointer-events: none;
+        }
+
+        .glow-red {
+            box-shadow: 0 0 20px rgba(255, 0, 51, 0.6);
+        }
+        .glow-blue {
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.6);
+        }
+        .text-glow-red {
+            text-shadow: 0 0 10px rgba(255, 0, 51, 0.8);
+        }
+        .text-glow-blue {
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.8);
+        }
+
+        .cyber-panel {
+            background: rgba(10, 10, 18, 0.88);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        .cyber-panel:hover {
+            border-color: rgba(255, 0, 51, 0.6);
+        }
+
+        .clip-corner {
+            clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+        }
+
+        .clip-button {
+            clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030308;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #00d2ff, #ff0033);
+            border-radius: 4px;
+        }
+
+        #heartCanvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- Background Slideshow -->
+    <div class="bg-slideshow">
+        <div class="bg-slide active" style="background-image: url('image_891d8a.jpg');"></div>
+        <div class="bg-slide" style="background-image: url('image_891dc5.jpg');"></div>
+    </div>
+    <div class="bg-cyber-overlay"></div>
+
+    <!-- Floating Canvas Particle Effect -->
+    <canvas id="heartCanvas"></canvas>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 cyber-panel border-b border-cyber-blue/30 px-4 sm:px-8 py-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            
+            <!-- Main Title Header -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="w-12 h-12 bg-gradient-to-tr from-cyber-blue to-cyber-red clip-corner flex items-center justify-center glow-red">
+                    <i class="fa-solid fa-heart text-black text-xl animate-pulse"></i>
+                </div>
+                <div>
+                    <h1 class="font-orbitron font-extrabold text-lg sm:text-2xl tracking-wider text-white">
+                        AAYUSH THAKUR <span class="text-cyber-red text-glow-red">&amp;</span> <span class="text-cyber-blue text-glow-blue">PURE LOVE PRERNA NAGRE</span>
+                    </h1>
+                    <p class="text-[11px] font-orbitron tracking-widest text-cyber-red font-bold">ETERNAL BOND // INFINITE LOVE PORTAL</p>
+                </div>
+            </div>
+
+            <!-- BEST LOVER Badge Header Center -->
+            <div class="flex items-center space-x-2 bg-black/80 border-2 border-cyber-red px-4 py-1.5 rounded-full glow-red">
+                <i class="fa-solid fa-crown text-cyber-blue animate-bounce"></i>
+                <span class="font-orbitron font-extrabold text-xs sm:text-sm text-white tracking-widest uppercase">
+                    BEST LOVER IN THE WORLD
+                </span>
+                <i class="fa-solid fa-crown text-cyber-blue animate-bounce"></i>
+            </div>
+
+            <!-- Audio Control -->
+            <div class="flex items-center space-x-3">
+                <button onclick="toggleBackgroundAudio()" id="audioBtn" class="clip-button bg-cyber-red hover:bg-cyber-blue text-black font-orbitron font-extrabold text-xs px-4 py-2 transition glow-red flex items-center gap-2">
+                    <i class="fa-solid fa-music"></i> AMBIENCE: OFF
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12 w-full flex-1">
+
+        <!-- Hero Section -->
+        <section class="cyber-panel rounded-2xl p-6 md:p-10 border-2 border-cyber-blue/40 relative overflow-hidden">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+                
+                <div class="space-y-5 max-w-2xl text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 bg-cyber-blue/20 border border-cyber-blue text-cyber-blue px-3 py-1 rounded-full text-xs font-orbitron font-bold">
+                        <i class="fa-solid fa-shield-halved text-cyber-red"></i>
+                        <span>SYSTEM STATUS: PERMANENT LOVE SYNCHRONIZED</span>
+                    </div>
+
+                    <h2 class="font-orbitron text-3xl sm:text-5xl font-black text-white leading-tight">
+                        <span class="text-cyber-blue text-glow-blue">Aayush Thakur</span> <br>
+                        <span class="text-xs font-orbitron tracking-widest text-gray-400 block my-1">&amp; PURE LOVE FOR</span>
+                        <span class="text-cyber-red text-glow-red">Prerna Nagre</span>
+                    </h2>
+
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                        A dedicated eternal love portal built to celebrate the purest love in the world. Featuring real-time love compatibility metrics, futuristic love note engines, and an infinite collection of multi-language romantic shayaris.
+                    </p>
+
+                    <div class="grid grid-cols-3 gap-4 pt-2 font-orbitron border-t border-cyber-blue/30 text-center">
+                        <div>
+                            <div class="text-cyber-blue font-bold text-lg sm:text-xl">∞</div>
+                            <div class="text-[10px] text-gray-400">LOVE SCORE</div>
+                        </div>
+                        <div>
+                            <div class="text-cyber-red font-bold text-lg sm:text-xl">100%</div>
+                            <div class="text-[10px] text-gray-400">COMPATIBILITY</div>
+                        </div>
+                        <div>
+                            <div class="text-cyber-blue font-bold text-lg sm:text-xl">FOREVER</div>
+                            <div class="text-[10px] text-gray-400">DURATION</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dual Portrait Display with uploaded images -->
+                <div class="grid grid-cols-2 gap-4 w-full max-w-md">
+                    <div class="relative group rounded-xl overflow-hidden border-2 border-cyber-red glow-red transform hover:scale-105 transition duration-500 cursor-pointer" onclick="setSlideBackground(0)">
+                        <img src="image_891d8a.jpg" alt="Prerna Portrait 1" class="w-full h-56 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                        <div class="absolute bottom-2 left-2 right-2 text-center">
+                            <span class="text-[10px] font-orbitron font-bold text-cyber-blue bg-black/80 px-2 py-0.5 rounded border border-cyber-blue">PRERNA // PORTRAIT 01</span>
+                        </div>
+                    </div>
+
+                    <div class="relative group rounded-xl overflow-hidden border-2 border-cyber-blue glow-blue transform hover:scale-105 transition duration-500 cursor-pointer" onclick="setSlideBackground(1)">
+                        <img src="image_891dc5.jpg" alt="Prerna Portrait 2" class="w-full h-56 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                        <div class="absolute bottom-2 left-2 right-2 text-center">
+                            <span class="text-[10px] font-orbitron font-bold text-cyber-red bg-black/80 px-2 py-0.5 rounded border border-cyber-red">PRERNA // PORTRAIT 02</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Dynamic Multi-Language Shayari Search Section -->
+        <section class="cyber-panel rounded-2xl p-6 sm:p-8 border border-cyber-red/40 space-y-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h3 class="font-orbitron text-2xl font-black text-white flex items-center gap-3">
+                        <i class="fa-solid fa-fire text-cyber-red"></i> INFINITE MULTI-LANGUAGE SHAYARI HUB
+                    </h3>
+                    <p class="text-xs text-gray-400">Search through endless romantic shayaris in all languages.</p>
+                </div>
+
+                <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0" id="langTabs">
+                    <button onclick="filterShayariLang('all', this)" class="lang-tab active clip-button px-3 py-1 font-orbitron text-xs font-bold bg-cyber-red text-black transition">ALL</button>
+                    <button onclick="filterShayariLang('Hindi', this)" class="lang-tab clip-button px-3 py-1 font-orbitron text-xs font-bold bg-black border border-cyber-blue/40 text-cyber-blue hover:bg-cyber-blue hover:text-black transition">HINDI</button>
+                    <button onclick="filterShayariLang('English', this)" class="lang-tab clip-button px-3 py-1 font-orbitron text-xs font-bold bg-black border border-cyber-blue/40 text-cyber-blue hover:bg-cyber-blue hover:text-black transition">ENGLISH</button>
+                    <button onclick="filterShayariLang('Urdu', this)" class="lang-tab clip-button px-3 py-1 font-orbitron text-xs font-bold bg-black border border-cyber-blue/40 text-cyber-blue hover:bg-cyber-blue hover:text-black transition">URDU</button>
+                    <button onclick="filterShayariLang('Japanese', this)" class="lang-tab clip-button px-3 py-1 font-orbitron text-xs font-bold bg-black border border-cyber-blue/40 text-cyber-blue hover:bg-cyber-blue hover:text-black transition">JAPANESE</button>
+                    <button onclick="filterShayariLang('French', this)" class="lang-tab clip-button px-3 py-1 font-orbitron text-xs font-bold bg-black border border-cyber-blue/40 text-cyber-blue hover:bg-cyber-blue hover:text-black transition">FRENCH</button>
+                </div>
+            </div>
+
+            <div class="relative">
+                <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-cyber-blue"></i>
+                <input type="text" id="shayariSearch" oninput="searchShayari()" placeholder="Search by keyword (e.g. Dil, Prerna, Eyes, Forever, Love, Heart)..." class="w-full bg-black/90 border-2 border-cyber-blue/50 rounded-xl py-3 pl-12 pr-4 text-sm font-rajdhani text-white focus:outline-none focus:border-cyber-red transition">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="shayariGrid"></div>
+        </section>
+
+        <!-- Interactive Features -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- Biometric Love Scanner -->
+            <section class="cyber-panel rounded-2xl p-6 border border-cyber-blue/40 space-y-6">
+                <div class="flex items-center justify-between border-b border-cyber-blue/30 pb-3">
+                    <h3 class="font-orbitron text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-microchip text-cyber-blue"></i> BIOMETRIC LOVE SCANNER
+                    </h3>
+                    <span class="text-xs font-orbitron text-cyber-red font-bold">AAYUSH × PRERNA</span>
+                </div>
+
+                <div class="space-y-4">
+                    <p class="text-xs text-gray-300">Run a quantum diagnostics scan on Aayush Thakur and Prerna Nagre's love frequencies.</p>
+                    
+                    <div class="relative bg-black/90 border border-cyber-blue/30 rounded-xl p-6 text-center space-y-4">
+                        <div id="scanPulse" class="w-20 h-20 mx-auto rounded-full border-4 border-cyber-red border-t-cyber-blue animate-spin flex items-center justify-center">
+                            <i class="fa-solid fa-heart text-cyber-red text-2xl"></i>
+                        </div>
+
+                        <div class="font-orbitron text-sm font-bold text-white" id="scanStatus">SCANNER READY</div>
+                        <div class="w-full bg-black h-2 rounded-full overflow-hidden border border-cyber-blue/40">
+                            <div id="scanProgress" class="bg-gradient-to-r from-cyber-blue to-cyber-red h-full w-0 transition-all duration-300"></div>
+                        </div>
+                    </div>
+
+                    <button onclick="runQuantumScan()" class="w-full clip-button bg-cyber-blue hover:bg-cyber-red text-black font-orbitron font-extrabold py-3 transition glow-blue">
+                        INITIALIZE SCAN
+                    </button>
+                </div>
+            </section>
+
+            <!-- Love Note Generator -->
+            <section class="cyber-panel rounded-2xl p-6 border border-cyber-red/40 space-y-6">
+                <div class="flex items-center justify-between border-b border-cyber-red/30 pb-3">
+                    <h3 class="font-orbitron text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles text-cyber-red"></i> LOVE NOTE GENERATOR
+                    </h3>
+                    <span class="text-xs font-orbitron text-cyber-blue font-bold">AAYUSH &amp; PRERNA</span>
+                </div>
+
+                <div class="space-y-4">
+                    <p class="text-xs text-gray-300">Generate a special romantic love note from Aayush to Prerna.</p>
+                    
+                    <div class="bg-black/90 border border-cyber-red/30 rounded-xl p-5 min-h-[120px] flex items-center justify-center text-center">
+                        <p id="generatedMessage" class="font-rajdhani text-sm sm:text-base text-cyber-blue italic">
+                            "Prerna, in every parallel universe and digital realm, my heart will always navigate directly to you."
+                        </p>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <button onclick="generateLoveNote()" class="flex-1 clip-button bg-cyber-red hover:bg-cyber-blue text-black font-orbitron font-extrabold py-3 transition glow-red">
+                            GENERATE NOTE
+                        </button>
+                        <button onclick="copyLoveNote()" class="border border-cyber-blue/50 text-cyber-blue hover:bg-cyber-blue/10 font-orbitron font-bold px-4 py-3 rounded-lg transition">
+                            <i class="fa-solid fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="cyber-panel border-t border-cyber-blue/30 py-6 px-4 text-center font-orbitron text-xs text-gray-400 relative z-10">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                <p>AAYUSH THAKUR &amp; PURE LOVE PRERNA NAGRE</p>
+            </div>
+            <div class="text-cyber-red font-bold flex items-center gap-2">
+                <span>BEST LOVER IN THE WORLD</span> <i class="fa-solid fa-heart"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* Slideshow Script */
+        const slides = document.querySelectorAll('.bg-slide');
+        let currentSlide = 0;
+
+        function rotateBackground() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(rotateBackground, 5000);
+
+        function setSlideBackground(index) {
+            slides.forEach(s => s.classList.remove('active'));
+            currentSlide = index;
+            slides[currentSlide].classList.add('active');
+        }
+
+        /* Multi-Language Shayari Database */
+        const shayariDatabase = [
+            { lang: 'Hindi', text: 'तेरी आँखों की चमक में खो जाता हूँ, जब भी देखता हूँ तुझे, बस तेरा ही हो जाता हूँ।', target: 'Prerna & Aayush' },
+            { lang: 'Hindi', text: 'ना चांद की चाहत, ना सितारों की फरमाइश, हर जन्म में मिले प्रेरणा का प्यार, बस यही है आयूष की ख्वाहिश।', target: 'Best Lover' },
+            { lang: 'Hindi', text: 'तेरी सादगी ही मेरा दिल चुरा लेती है, जब तू मुस्कुराती है तो पूरी दुनिया खूबसूरत लगती है।', target: 'Pure Love' },
+            { lang: 'Hindi', text: 'दिल के हर एक तार पर लिखा है नाम तुम्हारा, आयूष की हर सांस पर है प्रेरणा का सहारा।', target: 'Aayush & Prerna' },
+            { lang: 'English', text: 'In a universe full of noise, your voice is my favorite melody, Prerna.', target: 'Eternal Love' },
+            { lang: 'English', text: 'You are the only constant variable in my infinite code of life.', target: 'Pure Connection' },
+            { lang: 'English', text: 'My heart beats in sync with your smile, today and forever.', target: 'Best Lover' },
+            { lang: 'Urdu', text: 'تمہاری مسکراہٹ ہی میری زندگی کا حاصل ہے، تمہارے بغیر یہ دل بالکل ادھورا ہے۔', target: 'Dil Ki Baat' },
+            { lang: 'Urdu', text: 'محبت میں ہر حد پار کر جائیں گے، آیوُش اور پریرنا ہمیشہ ایک ساتھ رہیں گے۔', target: 'Always & Forever' },
+            { lang: 'Japanese', text: 'プレルナ、私の心は永遠にあなたとだけ動いています。 (My heart moves only with you forever, Prerna.)', target: 'Futuristic Love' },
+            { lang: 'French', text: 'Prerna, tu es la raison pour laquelle mon cœur bat à chaque instant.', target: 'True Passion' }
+        ];
+
+        let activeLanguage = 'all';
+
+        function renderShayaris(items) {
+            const grid = document.getElementById('shayariGrid');
+            grid.innerHTML = '';
+
+            if (items.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-8 text-gray-400 font-orbitron">NO SHAYARI FOUND FOR YOUR SEARCH. TRY ANOTHER KEYWORD!</div>`;
+                return;
+            }
+
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'bg-black/90 border border-cyber-blue/30 hover:border-cyber-red rounded-xl p-5 space-y-4 transition duration-300 flex flex-col justify-between';
+                card.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] font-orbitron font-bold text-black bg-cyber-blue px-2 py-0.5 rounded">${item.lang}</span>
+                            <span class="text-xs font-orbitron text-cyber-red">${item.target}</span>
+                        </div>
+                        <p class="font-rajdhani text-sm sm:text-base text-gray-200 leading-relaxed italic">"${item.text}"</p>
+                    </div>
+                    <div class="pt-3 border-t border-gray-800 flex justify-between items-center text-xs font-orbitron">
+                        <span class="text-cyber-blue"><i class="fa-solid fa-heart mr-1 text-cyber-red"></i> Aayush &amp; Prerna</span>
+                        <button onclick="copyText('${escapeHtml(item.text)}')" class="text-gray-400 hover:text-cyber-red transition">
+                            <i class="fa-solid fa-copy"></i> Copy
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterShayariLang(lang, button) {
+            activeLanguage = lang;
+            document.querySelectorAll('.lang-tab').forEach(btn => {
+                btn.classList.remove('bg-cyber-red', 'text-black');
+                btn.classList.add('bg-black', 'text-cyber-blue');
+            });
+            button.classList.add('bg-cyber-red', 'text-black');
+            button.classList.remove('bg-black', 'text-cyber-blue');
+            searchShayari();
+        }
+
+        function searchShayari() {
+            const query = document.getElementById('shayariSearch').value.toLowerCase().trim();
+            const filtered = shayariDatabase.filter(item => {
+                const matchesLang = (activeLanguage === 'all' || item.lang === activeLanguage);
+                const matchesQuery = item.text.toLowerCase().includes(query) || item.target.toLowerCase().includes(query) || item.lang.toLowerCase().includes(query);
+                return matchesLang && matchesQuery;
+            });
+            renderShayaris(filtered);
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        }
+
+        function copyText(text) {
+            const temp = document.createElement('textarea');
+            temp.value = text;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            alert('Shayari copied to clipboard!');
+        }
+
+        function runQuantumScan() {
+            const status = document.getElementById('scanStatus');
+            const progress = document.getElementById('scanProgress');
+
+            status.innerText = "SCANNING AAYUSH & PRERNA'S FREQUENCY...";
+            status.className = "font-orbitron text-sm font-bold text-cyber-blue animate-pulse";
+            progress.style.width = "0%";
+
+            let current = 0;
+            const interval = setInterval(() => {
+                current += 10;
+                progress.style.width = current + "%";
+
+                if (current >= 100) {
+                    clearInterval(interval);
+                    status.innerText = "MATCH RESULT: 100% INFINITE LOVE SYNC!";
+                    status.className = "font-orbitron text-sm font-bold text-cyber-red text-glow-red";
+                }
+            }, 150);
+        }
+
+        const loveNotes = [
+            "Prerna, in every parallel universe and digital realm, my heart will always navigate directly to you.",
+            "Aayush Thakur & Pure Love Prerna Nagre represent an unbreakable bond that transcends time.",
+            "You are the cybernetic light in my darkest nights, Prerna.",
+            "No algorithm in this world could ever calculate how deeply Aayush loves Prerna.",
+            "To the world, you are one person, but to Aayush, Prerna is the entire universe."
+        ];
+
+        function generateLoveNote() {
+            const randomIndex = Math.floor(Math.random() * loveNotes.length);
+            document.getElementById('generatedMessage').innerText = `"${loveNotes[randomIndex]}"`;
+        }
+
+        function copyLoveNote() {
+            const text = document.getElementById('generatedMessage').innerText;
+            copyText(text);
+        }
+
+        let audioCtx = null;
+        let isAudioPlaying = false;
+        let oscillator = null;
+
+        function toggleBackgroundAudio() {
+            const btn = document.getElementById('audioBtn');
+            if (!isAudioPlaying) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(220, audioCtx.currentTime);
+                gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                oscillator.start();
+
+                isAudioPlaying = true;
+                btn.innerHTML = '<i class="fa-solid fa-volume-high"></i> AMBIENCE: ON';
+                btn.classList.remove('bg-cyber-red');
+                btn.classList.add('bg-cyber-blue');
+            } else {
+                if (oscillator) oscillator.stop();
+                isAudioPlaying = false;
+                btn.innerHTML = '<i class="fa-solid fa-music"></i> AMBIENCE: OFF';
+                btn.classList.remove('bg-cyber-blue');
+                btn.classList.add('bg-cyber-red');
+            }
+        }
+
+        const heartCanvas = document.getElementById('heartCanvas');
+        const hCtx = heartCanvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            heartCanvas.width = window.innerWidth;
+            heartCanvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * heartCanvas.width;
+                this.y = heartCanvas.height + Math.random() * 100;
+                this.size = Math.random() * 12 + 6;
+                this.speedY = Math.random() * 1.5 + 0.5;
+                this.color = Math.random() > 0.5 ? '#ff0033' : '#00d2ff';
+                this.opacity = Math.random() * 0.7 + 0.3;
+            }
+
+            update() {
+                this.y -= this.speedY;
+                if (this.y < -20) {
+                    this.y = heartCanvas.height + 20;
+                    this.x = Math.random() * heartCanvas.width;
+                }
+            }
+
+            draw() {
+                hCtx.globalAlpha = this.opacity;
+                hCtx.fillStyle = this.color;
+                hCtx.font = `${this.size}px FontAwesome`;
+                hCtx.fillText('♥', this.x, this.y);
+                hCtx.globalAlpha = 1.0;
+            }
+        }
+
+        for (let i = 0; i < 35; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            hCtx.clearRect(0, 0, heartCanvas.width, heartCanvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.onload = function() {
+            renderShayaris(shayariDatabase);
+            animateParticles();
+        };
+    </script>
+</body>
+</html>
